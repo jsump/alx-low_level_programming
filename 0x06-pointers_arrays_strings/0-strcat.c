@@ -3,7 +3,7 @@
  * _strcat - funtion that concatinates two strings
  * @src: string to be appended
  * @dest: new string, terminates null byte at its end
- * Return: void
+ * Return: 0
  */
 
 char *_strcat(char *dest, char *src)
@@ -22,6 +22,7 @@ char *_strcat(char *dest, char *src)
 		i++;
 		j++;
 	}
+
 	dest[i + j] = '\0';
 	return (dest);
 }
