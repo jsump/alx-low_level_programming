@@ -18,7 +18,7 @@
 void print_all(const char * const format, ...)
 {
 	int k = 0;
-	char *s;
+	char *string;
 	char *sep = "";
 
 	va_list list;
@@ -41,16 +41,16 @@ void print_all(const char * const format, ...)
 					printf("%s%f", sep, va_arg(list, double));
 					break;
 				case 's':
-					s = va_arg(list, char *);
-					if (!s)
-						s = "(nil)";
-					printf("%s%s", sep, s);
+					string = va_arg(list, char *);
+					if (!string)
+						string = "(nil)";
+					printf("%s%s", sep, string);
 					break;
 				default:
 					k++;
 					continue;
 			}
-			sep = ",";
+			sep = ", ";
 			k++;
 		}
 	}
