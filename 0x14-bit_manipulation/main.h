@@ -1,0 +1,11 @@
+#ifndef main_h
+#define main_h
+
+int _putchar(char c);
+unsigned int binary_to_uist(const char *b);
+void print_binary(unsigned long int n);
+int get_bit(unsigned long int n, unsigned int index);
+int set _bit(unsigned long int *n, unsigned int index);
+int clear_bit(unsigned long int *n, unsigned int index);
+unsigned int flip_bits(unsigned long int n, unsigned long int m);
+#endif
