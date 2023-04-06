@@ -19,5 +19,7 @@ unsigned int binary_to_uint(const char *b)
 		k = k * 2 + b[index] - '\0';
 		++index;
 	}
+	if (b == NULL)
+		return 0;
 	return (k);
 }
