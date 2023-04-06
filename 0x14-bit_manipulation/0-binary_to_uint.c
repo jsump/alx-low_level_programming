@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stddef.h>
 /**
  * binary_to_uint - converts a binary number to unsigned int
  * @b: pointing to a string of 0 and 1 chars
@@ -17,7 +18,11 @@ unsigned int binary_to_uint(const char *b)
 	{
 		if (b[index] != '0' && b[index] != '1')
 			return (0);
+<<<<<<< HEAD
 		k = k * 2 + b[index] - '0';
+=======
+		k = k *2 + b[index] - '\0';
+>>>>>>> parent of 08f6823... Multiple mains update
 		++index;
 	}
 	return (k);
