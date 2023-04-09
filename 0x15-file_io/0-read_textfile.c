@@ -15,24 +15,33 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	ssize_t readbytes;
 	char *buffer;
 
-	buffer = malloc(letters + 1);
-	if (buffer == NULL)
+	if (!filename)
 		return (0);
-
 	filepointer = fopen(filename, "r");
 	if (!filepointer)
+		return (0);
+	buffer = malloc(letters);
+	if (!buffer)
 	{
+		fclose(filepointer);
 		return (0);
 	}
 	readbytes = fread(buffer, sizeof(char), letters, filepointer);
 	if (readbytes == -1)
 	{
 		fclose(filepointer);
+		free(buffer);
 		return (0);
 	}
 	buffer[readbytes] = '\0';
-	printf("%s", buffer);
-
+	if (printf("%s", buffer) < 0)
+	{
+		fclose(filepointer);
+		free(buffer);
+		return (0);
+	}
 	fclose(filepointer);
+	free(buffer);
 	return (readbytes);
 }
+
