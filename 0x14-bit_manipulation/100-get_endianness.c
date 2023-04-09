@@ -6,5 +6,6 @@
 int get_endianness(void)
 {
 	unsigned int k = 1;
-	return ((char *)&k)[0] ? 1 : 0;
+
+	return (((char *)&k)[0] ? 1 : 0);
 }
