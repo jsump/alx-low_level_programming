@@ -1,7 +1,7 @@
 #include "main.h"
 #include <fcntl.h>
 #include <string.h>
-/*
+/**
  * append_text_to_file - appends text at the end of a file
  * @filename: name of file
  * @text_content: NULL terminated string to add at end of file
@@ -10,36 +10,29 @@
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int filepointer;
+	FILE *filepointer;
 	int byteswritten;
-	int retvl = 1;
-	mode_t mode = S_IRUSR | S_IWUSR;
+	int len;
 
 	if (filename == NULL)
 	{
 		return (-1);
 	}
-	filepointer = open(filename, O_WRONLY | O_CREAT | O_TRUNC, mode);
-	if (filepointer == -1)
+	filepointer = fopen(filename, "a");
+	if (filepointer == NULL)
 	{
 		return (-1);
 	}
 	if (text_content != NULL)
 	{
-		byteswritten = write(filepointer, text_content, strlen(text_content));
-		if (byteswritten == -1)
+		len = strlen(text_content);
+		byteswritten = fwrite(text_content, sizeof(char), len, filepointer);
+		if (byteswritten != len)
 		{
-			retvl = -1;
+			fclose(filepointer);
+			return (-1);
 		}
 	}
-	else
-	{
-		byteswritten = write(filepointer, "", 0);
-		if (byteswritten == -1)
-		{
-			retvl = -1;
-		}
-	}
-	close(filepointer);
-	return (retvl);
+	fclose(filepointer);
+	return (-1);
 }
