@@ -21,7 +21,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (buffer == NULL)
 		return (-1);
 
-	filepointer = fopen(filename, O_RDONLY);
+	filepointer = fopen(filename, "r");
 
 	if (filename == NULL)
 	{
