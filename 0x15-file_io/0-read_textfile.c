@@ -12,41 +12,27 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	FILE *filepointer;
-	char *buffer;
 	ssize_t readbytes;
-	ssize_t writtenbytes;
+	char *buffer;
 
 	buffer = malloc(letters + 1);
-
 	if (buffer == NULL)
-		return (-1);
+		return (0);
 
 	filepointer = fopen(filename, "r");
-
-	if (filename == NULL)
+	if (!filepointer)
 	{
-		free(buffer);
-		return (-1);
+		return (0);
 	}
-	readbytes = fread(buffer, 1, letters, filepointer);
-
+	readbytes = fread(buffer, sizeof(char), letters, filepointer);
 	if (readbytes == -1)
 	{
 		fclose(filepointer);
-		free(buffer);
-
-		return (-1);
-	}
-	buffer[readbytes] = '\0';
-	writtenbytes = write(STDOUT_FILENO, buffer, readbytes);
-	if (writtenbytes == -1 || writtenbytes != readbytes)
-	{
-		fclose(filepointer);
-		free(buffer);
 		return (0);
 	}
+	buffer[readbytes] = '\0';
 	printf("%s", buffer);
+
 	fclose(filepointer);
-	free(buffer);
-	return (writtenbytes);
-}
+	return (readbytes);
+}	
