@@ -1,5 +1,6 @@
 #include "main.h"
-#include <fnctl.h>
+#include <fcntl.h>
+#include <string.h>
 /*
  * append_text_to_file - appends text at the end of a file
  * @filename: name of file
@@ -23,7 +24,7 @@ int append_text_to_file(const char *filename, char *text_content)
 	{
 		return (-1);
 	}
-	if (text_context != NULL)
+	if (text_content != NULL)
 	{
 		byteswritten = write(filepointer, text_content, strlen(text_content));
 		if (byteswritten == -1)
@@ -31,7 +32,7 @@ int append_text_to_file(const char *filename, char *text_content)
 			retvl = -1;
 		}
 	}
-	else 
+	else
 	{
 		byteswritten = write(filepointer, "", 0);
 		if (byteswritten == -1)
