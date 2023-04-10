@@ -1,13 +1,11 @@
 #include "main.h"
 #include <fcntl.h>
 #define BUFFER_SIZE 1024
-
 /**
  * file_copy - copies a file
  * @file_from: file to be copied
  * @file_to: file that has been copied
  * Return: exit status
- *
  */
 void file_copy(char *file_from, char *file_to)
 {
@@ -23,7 +21,6 @@ void file_copy(char *file_from, char *file_to)
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s. \n", file_from);
 		exit(98);
 	}
-
 	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
@@ -39,8 +36,6 @@ void file_copy(char *file_from, char *file_to)
 			exit(99);
 		}
 	}
-
-
 	if (readbytes == -1)
 	{
 		close(fd_from);
@@ -49,12 +44,12 @@ void file_copy(char *file_from, char *file_to)
 	}
 	if (close(fd_from) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Cant't close fd %d, \n", fd_from);
+		dprintf(STDERR_FILENO, "Error: Cant't close fd %d. \n", fd_from);
 		exit(100);
 	}
 	if (close(fd_to) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d, \n", fd_to);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d. \n", fd_to);
 		exit(100);
 	}
 }
