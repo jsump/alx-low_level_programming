@@ -11,7 +11,6 @@ int create_file(const char *filename, char *text_content)
 	FILE *filepointer;
 	size_t byteswritten;
 	size_t length;
-	int retvl = 1;
 
 	if (filename == NULL)
 	{
@@ -29,9 +28,9 @@ int create_file(const char *filename, char *text_content)
 		byteswritten = fwrite(text_content, sizeof(char), length, filepointer);
 		if (byteswritten != length)
 		{
-			retvl = -1;
+			return (-1);
 		}
 	}
 	fclose(filepointer);
-	return (retvl);
+	return (1);
 }
