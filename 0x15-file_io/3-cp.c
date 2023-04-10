@@ -35,7 +35,7 @@ void file_copy(char *file_from, char *file_to)
 		{
 			close(fd_from);
 			close(fd_to);
-			dprintf(STDERR_FILENO, "Error: Can't write to %s. \n", file_to);
+			dprintf(STDERR_FILENO, "Error: Can't write to file %s. \n", file_to);
 			exit(99);
 		}
 	}
@@ -43,7 +43,7 @@ void file_copy(char *file_from, char *file_to)
 	{
 		close(fd_from);
 		close(fd_to);
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s. \n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't read from file NAME_OF_FILE %s. \n", file_from);
 		exit(98);
 	}
 	if (close(fd_from) == -1)
