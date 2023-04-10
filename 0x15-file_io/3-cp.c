@@ -33,6 +33,8 @@ void file_copy(char *file_from, char *file_to)
 		writtenbytes = write(fd_to, buffer, readbytes);
 		if (writtenbytes == -1)
 		{
+			close(fd_from);
+			close(fd_to);
 			dprintf(STDERR_FILENO, "Error: Can't write to %s. \n", file_to);
 			exit(99);
 		}
