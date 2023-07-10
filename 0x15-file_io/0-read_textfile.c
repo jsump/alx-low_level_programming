@@ -35,7 +35,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 	buffer[readbytes] = '\0';
-	if (printf("%s", buffer) < 0)
+	if (write(STDOUT_FILENO, buffer, readbytes) != readbytes)
 	{
 		fclose(filepointer);
 		free(buffer);
