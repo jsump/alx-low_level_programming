@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include <string.h>
+#include <fcntl.h>
 
 /**
  * create_file - creates a file
@@ -15,25 +16,25 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	FILE *filepointer;
-	size_t byteswritten;
+	int fdescriptor;
+	ssize_t byteswritten;
 	size_t length;
 
 	if (filename == NULL)
 		return (-1);
 
-	filepointer = fopen(filename, "w");
-	if (filepointer == NULL)
+	fdescriptor = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	if (fdescriptor == -1)
 		return (-1);
 
 	if (text_content != NULL)
 	{
 		length = strlen(text_content);
-		byteswritten = fwrite(text_content, sizeof(char), length, filepointer);
-		if (byteswritten != length)
+		byteswritten = write(fdescriptor, text_content, length);
+		if (byteswritten == -1)
 			return (-1);
 
 	}
-	fclose(filepointer);
+	close(fdescriptor);
 	return (1);
 }
