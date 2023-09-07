@@ -7,12 +7,12 @@
  * can be am e,pty string.
  * Return: 1 if success, 0 otherwise
  * in case of collision, add th enew node at the,
- * beginning of the list. 
+ * beginning of the list.
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *new node;
+	hash_node_t *new_node;
 
 	if (key == NULL || strlen(key) == 0)
 		return (0);
@@ -27,12 +27,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	new_node->value = strdup(value);
 	new_node->next = NULL;
 
-	if (ht->table[index] == NULL)
-		ht->table[index] = new_node;
+	if (ht->array[index] == NULL)
+		ht->array[index] = new_node;
 	else
 	{
-		new_node->next = ht->table[index];
-		ht->table[index] = new_node
+		new_node->next = ht->array[index];
+		ht->array[index] = new_node;
 	}
 	return (1);
 }
