@@ -12,10 +12,10 @@ $(NAME): m.h $(OBJ)
 all: $(NAME)
 
 clean: 
-	-@$(RM) -f *~ $(NAME)
+	$(RM) -f *~ $(NAME)
 
 oclean:
-	-@$(RM) -f $(OBJ)
+	$(RM) -f $(OBJ)
 
 fclean: clean oclean
-re: fclean all
+re: oclean all
