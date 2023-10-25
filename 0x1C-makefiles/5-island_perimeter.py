@@ -6,6 +6,7 @@ This module contains a function that returns the perimeter of the island
 described in grid(list of intergers)
 """
 
+
 def island_perimeter(grid):
     """
     This function returns the perimeter of the island drescribed in
