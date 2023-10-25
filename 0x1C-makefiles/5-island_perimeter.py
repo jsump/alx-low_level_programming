@@ -1,5 +1,16 @@
 #!/usr/bin/python3
+"""
+Module: Island Perimeter
+
+This module contains a function that returns the perimeter of the island
+described in grid(list of intergers)
+"""
+
 def island_perimeter(grid):
+    """
+    This function returns the perimeter of the island drescribed in
+    gris(list of intergers)
+    """
     if not grid or not grid[0]:
         return 0
 
