@@ -16,6 +16,6 @@ oclean:
 	-@$(RM) -f $(OBJ) 2>/dev/null || true
 
 fclean: clean oclean
-re: oclean all
+re: fclean all
 
 $(SRC): m.h
